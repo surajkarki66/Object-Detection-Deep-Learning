@@ -87,3 +87,5 @@ wget -P model_data https://pjreddie.com/media/files/yolov3.weights
 # Predicted Output
 ![output](https://user-images.githubusercontent.com/50628520/86440430-22e60f00-bd2a-11ea-8d3b-afd1d6efa5fd.jpg)
 
+# Predicted vido output
+![output](https://user-images.githubusercontent.com/50628520/86506962-00b8c380-bdf4-11ea-8b78-669c85713c9a.gif)
