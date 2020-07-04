@@ -7,8 +7,8 @@ from utils import image_preprocess, postprocess_boxes, nms, draw_bbox
 
 
 class Detection:
-    def __init__(self, YoloV3, CLASSES):
-        self.YoloV3 = YoloV3
+    def __init__(self, tiny_YoloV3, CLASSES):
+        self.tiny_YoloV3 = tiny_YoloV3
         self.CLASSES = CLASSES
 
     def detect_image(self, image_path=None, output_path=None, input_size=416, show=False, score_threshold=0.3, iou_threshold=0.45, rectangle_colors=''):
@@ -23,10 +23,9 @@ class Detection:
             image_data = tf.expand_dims(image_data, 0)
 
             # it gives output in three different scale
-            pred_bbox = self.YoloV3.predict(image_data)
+            pred_bbox = self.tiny_YoloV3.predict(image_data)
             print(pred_bbox[0].shape)
             print(pred_bbox[1].shape)
-            print(pred_bbox[2].shape)
             pred_bbox = [tf.reshape(x, (-1, tf.shape(x)[-1]))
                          for x in pred_bbox]
             pred_bbox = tf.concat(pred_bbox, axis=0)
@@ -63,7 +62,6 @@ class Detection:
         width = int(vid.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(vid.get(cv2.CAP_PROP_FRAME_HEIGHT))
         fps = int(vid.get(cv2.CAP_PROP_FPS))
-        print(fps)
         codec = cv2.VideoWriter_fourcc(*'XVID')
         # output_path must be .mp4
         out = cv2.VideoWriter(output_path, codec, fps, (width, height))
@@ -82,7 +80,7 @@ class Detection:
             image_data = tf.expand_dims(image_data, 0)
 
             t1 = time.time()
-            pred_bbox = self.YoloV3.predict(image_data)
+            pred_bbox = self.tiny_YoloV3.predict(image_data)
             t2 = time.time()
 
             pred_bbox = [tf.reshape(x, (-1, tf.shape(x)[-1]))
@@ -142,7 +140,7 @@ class Detection:
             image_frame = tf.expand_dims(image_frame, 0)
 
             t1 = time.time()
-            pred_bbox = self.YoloV3.predict(image_frame)
+            pred_bbox = self.tiny_YoloV3.predict(image_frame)
             t2 = time.time()
 
             pred_bbox = [tf.reshape(x, (-1, tf.shape(x)[-1]))

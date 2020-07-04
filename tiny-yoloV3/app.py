@@ -2,25 +2,25 @@ import tensorflow as tf
 
 from detection import Detection
 from utils import load_yolo_weights
-from model.yolov3 import complete_yolov3
+from model.tiny_yoloV3 import complete_tiny_YOLOV3
 from configs import *
 
 if __name__ == "__main__":
     input_size = YOLO_INPUT_SIZE
-    Darknet_weights = YOLO_DARKNET_WEIGHTS
+    Darknet_weights = YOLO_DARKNET_TINY_WEIGHTS 
 
     # input paths
-    image_path = "test_images/1.jpg"
-    video_path = "test_video/test.mp4"
+    image_path = "test/images/1.jpg"
+    video_path = "test/videos/test.mp4"
 
     # outputs path
     image_output_path = 'output.jpg'
     video_output_path = 'output.mp4'
     live_output_path = 'live_output.mp4'
 
-    yolo = complete_yolov3(input_size)
-    load_yolo_weights(yolo, Darknet_weights)  # use Darknet weights
-    detection = Detection(yolo, YOLO_COCO_CLASSES)
+    tiny_yoloV3 = complete_tiny_YOLOV3(input_size)
+    load_yolo_weights(tiny_yoloV3, Darknet_weights)  # use Darknet weights
+    detection = Detection(tiny_yoloV3, YOLO_COCO_CLASSES)
 
     # Image detection
     #detection.detect_image(image_path, output_path=image_output_path, input_size=input_size,
