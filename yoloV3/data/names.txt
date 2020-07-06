@@ -1,0 +1,7 @@
+Human_hand
+Human_arm
+Human_body
+Human_mouth
+Human_nose
+Human_eye
+Human_leg

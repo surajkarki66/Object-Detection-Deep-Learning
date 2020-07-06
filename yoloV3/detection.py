@@ -24,9 +24,8 @@ class Detection:
 
             # it gives output in three different scale
             pred_bbox = self.YoloV3.predict(image_data)
-            print(pred_bbox[0].shape)
-            print(pred_bbox[1].shape)
-            print(pred_bbox[2].shape)
+            #print(pred_bbox[1].shape)
+            #print(pred_bbox[2].shape)
             pred_bbox = [tf.reshape(x, (-1, tf.shape(x)[-1]))
                          for x in pred_bbox]
             pred_bbox = tf.concat(pred_bbox, axis=0)
@@ -34,10 +33,10 @@ class Detection:
 
             bboxes = postprocess_boxes(
                 pred_bbox, original_image, input_size, score_threshold)
-            print(bboxes.shape)
+            #print(bboxes.shape)
             bboxes = nms(bboxes, iou_threshold, method='nms')
-            print(bboxes[0].shape)
-            print(len(bboxes))
+            #print(bboxes[0].shape)
+            #print(len(bboxes))
 
             image = draw_bbox(original_image, bboxes, CLASSES=self.CLASSES,
                               rectangle_colors=rectangle_colors)

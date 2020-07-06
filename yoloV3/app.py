@@ -23,12 +23,12 @@ if __name__ == "__main__":
     detection = Detection(yolo, YOLO_COCO_CLASSES)
 
     # Image detection
-    #detection.detect_image(image_path, output_path=image_output_path, input_size=input_size,
-     #                     show=True, rectangle_colors=(8, 8, 9))
+    detection.detect_image(image_path, output_path=image_output_path, input_size=input_size,
+                          show=True, rectangle_colors=(8, 8, 9))
 
     # Video Detection
-    detection.detect_video(video_path, output_path = video_output_path,
-                           input_size=input_size, show=True, rectangle_colors=(8, 8, 9))
+    #detection.detect_video(video_path, output_path = video_output_path,
+     #                      input_size=input_size, show=True, rectangle_colors=(8, 8, 9))
 
     # Live Detection
     #detection.live_detection(live_output_path, input_size=input_size, show=True, rectangle_colors=(8, 8, 9))
